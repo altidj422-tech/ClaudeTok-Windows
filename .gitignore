@@ -1,0 +1,19 @@
+# .NET build output
+bin/
+obj/
+*.user
+*.suo
+
+# Build artifacts
+claudetok-win-*.zip
+
+# Editor
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# NuGet cache
+packages/
