@@ -12,7 +12,7 @@ public partial class App : Application
     private TrayMenu? _tray;
     private IpcServer? _ipc;
 
-    public static App Current => (App)Application.Current;
+    public static new App Current => (App)Application.Current;
     public MainWindow MainWindowRef => _mainWindow!;
 
     public static string LogPath => Path.Combine(Path.GetTempPath(), "claudetok.log");
