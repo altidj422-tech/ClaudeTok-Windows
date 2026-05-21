@@ -17,7 +17,7 @@ New-Item -ItemType Directory -Path $staging | Out-Null
 
 Copy-Item ".\bin\publish\ClaudeTok.exe" -Destination $staging
 Copy-Item ".\show.ps1", ".\hide.ps1", ".\prelaunch.ps1", ".\stop.ps1" -Destination $staging
-Copy-Item ".\install.ps1", ".\README.md", ".\LICENSE" -Destination $staging
+Copy-Item ".\install.ps1", ".\install.bat", ".\README.md", ".\LICENSE" -Destination $staging
 
 if (Test-Path $zip) { Remove-Item $zip }
 Compress-Archive -Path "$staging\*" -DestinationPath $zip

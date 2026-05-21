@@ -24,23 +24,27 @@ Feature parity with the macOS version:
 1. Download `claudetok-win-vX.Y.Z.zip` from [Releases](https://github.com/altidj422-tech/ClaudeTok-Windows/releases).
 2. Right-click the zip → **Properties** → check **Unblock** (if shown) → OK.
 3. Extract to any folder.
-4. Open **PowerShell** in that folder (Shift+Right-click → "Open PowerShell here").
-5. Run:
+4. **Double-click `install.bat`.** A PowerShell window opens, installs, then pauses with a "press any key" prompt.
+
+   *Or, if you prefer PowerShell directly:* open PowerShell in that folder and run
    ```powershell
-   .\install.ps1
+   Get-ChildItem -Recurse | Unblock-File
+   powershell -ExecutionPolicy Bypass -File .\install.ps1
    ```
-6. **Restart Claude Code.** Next prompt → TikTok appears bottom-right.
+5. **Restart Claude Code.** Next prompt → TikTok appears bottom-right.
+
+> ⚠ **Why the `Unblock-File` / `Bypass` step?** Windows blocks `.ps1` files downloaded from the internet by default (the "execution policy is disabled" error). The two commands above unblock the files and run the installer once without changing your system-wide PowerShell policy. The hooks the installer writes use `-ExecutionPolicy Bypass` internally so they Just Work afterward.
 
 ### From source (devs)
 
 ```powershell
 git clone https://github.com/altidj422-tech/ClaudeTok-Windows.git
 cd ClaudeTok-Windows
-.\build.ps1
-.\install.ps1
+.\build.bat
+.\install.bat
 ```
 
-Requires the **.NET 8 SDK** ([download](https://dotnet.microsoft.com/download)).
+Requires the **.NET 8 SDK** ([download](https://dotnet.microsoft.com/download)). The `.bat` wrappers handle the PowerShell execution-policy dance for you; if you'd rather invoke the `.ps1` files directly, use `powershell -ExecutionPolicy Bypass -File .\build.ps1` etc.
 
 ## First-launch SmartScreen prompt
 
